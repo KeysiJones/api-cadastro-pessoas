@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class CadastrosController {
@@ -26,8 +28,8 @@ public class CadastrosController {
         return repository.save(pessoa8);
     }
 
-    @GetMapping("/consultar")
-    public Iterable<Pessoa> consultaPessoa() {
+    @GetMapping("/consultar-cadastros")
+    public List<Pessoa> consultaPessoa() {
         return repository.findAll();
     }
 }
