@@ -2,9 +2,8 @@ package com.keysijones.cadastros.controller;
 
 import com.keysijones.cadastros.model.Pessoa;
 import com.keysijones.cadastros.repository.PessoaRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,14 +17,13 @@ public class CadastrosController {
         this.repository = repository;
     }
 
-    @GetMapping("/cadastrar")
-    public Pessoa cadastraPessoa() {
-        Pessoa pessoa8 = new Pessoa();
-        pessoa8.setIdade(12);
-        pessoa8.setNome("Keysi");
-        pessoa8.setProfissao("Developer");
-
-        return repository.save(pessoa8);
+    @PostMapping("/cadastrar")
+    public void cadastraPessoa(@RequestBody @Validated Pessoa pessoa) {
+        try {
+            repository.save(pessoa);
+        } catch (Exception e) {
+            System.out.println("********** Erro: " + e.getMessage() + " **********");
+        }
     }
 
     @GetMapping("/consultar-cadastros")
