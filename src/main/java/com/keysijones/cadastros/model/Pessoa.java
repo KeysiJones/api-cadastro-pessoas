@@ -1,14 +1,29 @@
 package com.keysijones.cadastros.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity(name = "tb_pessoa")
 public class Pessoa {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String nome;
     private int idade;
     private String profissao;
 
-    public Pessoa(String nome, int idade, String profissao) {
+    public Pessoa(long id, String nome, int idade, String profissao) {
+        this.id = id;
         this.nome = nome;
         this.idade = idade;
         this.profissao = profissao;
+    }
+
+    public Pessoa() {
+
     }
 
     public String getNome() {
@@ -35,4 +50,7 @@ public class Pessoa {
         this.profissao = profissao;
     }
 
+    public long getId() {
+        return id;
+    }
 }
