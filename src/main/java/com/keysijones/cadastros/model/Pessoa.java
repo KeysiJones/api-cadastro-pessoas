@@ -12,12 +12,14 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotBlank(message = "O nome é obrigatório !!")
     private String nome;
-    private int idade;
+
+    private String idade;
     private String profissao;
 
-    public Pessoa(long id, String nome, int idade, String profissao) {
+    public Pessoa(long id, String nome, String idade, String profissao) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -36,11 +38,11 @@ public class Pessoa {
         this.nome = nome;
     }
 
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
     }
 
