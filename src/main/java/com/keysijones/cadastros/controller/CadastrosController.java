@@ -11,19 +11,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class CadastrosController {
 
-    private PessoaRepository repository;
+    private final PessoaRepository repository;
 
     public CadastrosController(PessoaRepository repository) {
         this.repository = repository;
     }
 
     @PostMapping("/cadastrar")
-    public void cadastraPessoa(@RequestBody @Validated Pessoa pessoa) {
-        try {
-            repository.save(pessoa);
-        } catch (Exception e) {
-            System.out.println("********** Erro: " + e.getMessage() + " **********");
-        }
+    public Pessoa cadastrarPessoa(@RequestBody @Validated Pessoa pessoa) {
+        return repository.save(pessoa);
     }
 
     @GetMapping("/consultar-cadastros")
