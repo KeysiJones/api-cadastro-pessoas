@@ -6,6 +6,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -25,5 +26,10 @@ public class CadastrosController {
     @GetMapping("/consultar-cadastros")
     public List<Pessoa> consultaPessoa() {
         return repository.findAll();
+    }
+
+    @GetMapping("/pessoa/{id}")
+    public Optional<Pessoa> findPessoa(@PathVariable(name = "id") Long id) {
+        return Optional.ofNullable(repository.findById(id)).orElse(null);
     }
 }
