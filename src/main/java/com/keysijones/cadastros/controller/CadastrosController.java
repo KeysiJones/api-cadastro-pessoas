@@ -32,4 +32,9 @@ public class CadastrosController {
     public Optional<Pessoa> findPessoa(@PathVariable(name = "id") Long id) {
         return Optional.ofNullable(repository.findById(id)).orElse(null);
     }
+
+    @GetMapping("/pessoa")
+    public List<Pessoa> findPessoaByName(@RequestParam(name = "nome") String nome) {
+        return Optional.ofNullable(repository.findByNomeContainingIgnoreCase(nome)).orElse(null);
+    }
 }
